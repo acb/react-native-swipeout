@@ -129,8 +129,7 @@ var Swipeout = (0, _createReactClass2.default)({
     style: (_deprecatedReactNativePropTypes.ViewPropTypes || _reactNative.View.propTypes).style,
     sensitivity: _propTypes2.default.number,
     buttonWidth: _propTypes2.default.number,
-    disabled: _propTypes2.default.bool,
-    viewRef: (0, _react.createRef)()
+    disabled: _propTypes2.default.bool
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -154,7 +153,8 @@ var Swipeout = (0, _createReactClass2.default)({
       openedRight: false,
       swiping: false,
       tweenDuration: 160,
-      timeStart: null
+      timeStart: null,
+      viewRef: (0, _react.createRef)()
     };
   },
 
@@ -431,7 +431,7 @@ var Swipeout = (0, _createReactClass2.default)({
       _react2.default.createElement(
         _reactNative.View,
         _extends({
-          ref: viewRef,
+          ref: this.state.viewRef,
           style: styleContent,
           onLayout: this._onLayout
         }, this._panResponder.panHandlers),

@@ -113,7 +113,6 @@ const Swipeout = createReactClass({
     sensitivity: PropTypes.number,
     buttonWidth: PropTypes.number,
     disabled: PropTypes.bool,
-    viewRef: createRef(),
   },
 
   getDefaultProps: function () {
@@ -138,6 +137,7 @@ const Swipeout = createReactClass({
       swiping: false,
       tweenDuration: 160,
       timeStart: null,
+      viewRef: createRef(),
     };
   },
 
@@ -391,7 +391,7 @@ const Swipeout = createReactClass({
     return (
       <View style={styleSwipeout}>
         <View
-          ref={viewRef}
+          ref={this.state.viewRef}
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}
