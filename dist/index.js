@@ -153,8 +153,7 @@ var Swipeout = (0, _createReactClass2.default)({
       openedRight: false,
       swiping: false,
       tweenDuration: 160,
-      timeStart: null,
-      swipeoutContent: (0, _react.createRef)()
+      timeStart: null
     };
   },
 
@@ -182,6 +181,7 @@ var Swipeout = (0, _createReactClass2.default)({
         return false;
       }
     });
+    this.swipeoutContent = (0, _react.createRef)();
   },
 
   UNSAFE_componentWillReceiveProps: function UNSAFE_componentWillReceiveProps(nextProps) {
@@ -199,7 +199,7 @@ var Swipeout = (0, _createReactClass2.default)({
     } else {
       this._callOnClose();
     }
-    this.state.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var buttonWidth = _this2.props.buttonWidth || width / 5;
       _this2.setState({
         btnWidth: buttonWidth,
@@ -341,7 +341,7 @@ var Swipeout = (0, _createReactClass2.default)({
   _openRight: function _openRight() {
     var _this3 = this;
 
-    this.state.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var btnWidth = _this3.props.buttonWidth || width / 5;
 
       _this3.setState({
@@ -363,7 +363,7 @@ var Swipeout = (0, _createReactClass2.default)({
   _openLeft: function _openLeft() {
     var _this4 = this;
 
-    this.state.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var btnWidth = _this4.props.buttonWidth || width / 5;
 
       _this4.setState({

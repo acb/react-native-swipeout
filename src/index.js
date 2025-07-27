@@ -137,7 +137,6 @@ const Swipeout = createReactClass({
       swiping: false,
       tweenDuration: 160,
       timeStart: null,
-      swipeoutContent: createRef(),
     };
   },
 
@@ -156,6 +155,7 @@ const Swipeout = createReactClass({
       onShouldBlockNativeResponder: (event, gestureState) => false,
       onPanResponderTerminationRequest: () => false,
     });
+    this.swipeoutContent = createRef();
   },
 
   UNSAFE_componentWillReceiveProps: function (nextProps) {
@@ -171,7 +171,7 @@ const Swipeout = createReactClass({
     } else {
       this._callOnClose();
     }
-    this.state.swipeoutContent.measure((ox, oy, width, height) => {
+    this.swipeoutContent.measure((ox, oy, width, height) => {
       let buttonWidth = this.props.buttonWidth || (width / 5);
       this.setState({
         btnWidth: buttonWidth,
@@ -306,7 +306,7 @@ const Swipeout = createReactClass({
   },
 
   _openRight: function () {
-    this.state.swipeoutContent.measure((ox, oy, width, height) => {
+    this.swipeoutContent.measure((ox, oy, width, height) => {
       let btnWidth = this.props.buttonWidth || (width / 5);
 
       this.setState({
@@ -326,7 +326,7 @@ const Swipeout = createReactClass({
   },
 
   _openLeft: function () {
-    this.state.swipeoutContent.measure((ox, oy, width, height) => {
+    this.swipeoutContent.measure((ox, oy, width, height) => {
       let btnWidth = this.props.buttonWidth || (width / 5);
 
       this.setState({
