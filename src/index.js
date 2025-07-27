@@ -137,7 +137,7 @@ const Swipeout = createReactClass({
       swiping: false,
       tweenDuration: 160,
       timeStart: null,
-      viewRef: createRef(),
+      swipeoutContent: createRef(),
     };
   },
 
@@ -171,7 +171,7 @@ const Swipeout = createReactClass({
     } else {
       this._callOnClose();
     }
-    this.swipeoutContent.measure((ox, oy, width, height) => {
+    this.state.swipeoutContent.measure((ox, oy, width, height) => {
       let buttonWidth = this.props.buttonWidth || (width / 5);
       this.setState({
         btnWidth: buttonWidth,
@@ -306,7 +306,7 @@ const Swipeout = createReactClass({
   },
 
   _openRight: function () {
-    this.swipeoutContent.measure((ox, oy, width, height) => {
+    this.state.swipeoutContent.measure((ox, oy, width, height) => {
       let btnWidth = this.props.buttonWidth || (width / 5);
 
       this.setState({
@@ -326,7 +326,7 @@ const Swipeout = createReactClass({
   },
 
   _openLeft: function () {
-    this.swipeoutContent.measure((ox, oy, width, height) => {
+    this.state.swipeoutContent.measure((ox, oy, width, height) => {
       let btnWidth = this.props.buttonWidth || (width / 5);
 
       this.setState({
@@ -391,7 +391,7 @@ const Swipeout = createReactClass({
     return (
       <View style={styleSwipeout}>
         <View
-          ref={this.state.viewRef}
+          ref={this.state.swipeoutContent}
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}
