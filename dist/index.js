@@ -182,6 +182,7 @@ var Swipeout = (0, _createReactClass2.default)({
       }
     });
     this.swipeoutContent = (0, _react.createRef)();
+    console.warn(this.swipeoutContent);
   },
 
   UNSAFE_componentWillReceiveProps: function UNSAFE_componentWillReceiveProps(nextProps) {

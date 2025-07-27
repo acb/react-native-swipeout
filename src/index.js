@@ -156,6 +156,7 @@ const Swipeout = createReactClass({
       onPanResponderTerminationRequest: () => false,
     });
     this.swipeoutContent = createRef();
+    console.warn(this.swipeoutContent);
   },
 
   UNSAFE_componentWillReceiveProps: function (nextProps) {
