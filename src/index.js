@@ -125,6 +125,8 @@ const Swipeout = createReactClass({
   },
 
   getInitialState: function () {
+    this.swipeoutContent = createRef();
+
     return {
       autoClose: this.props.autoClose || false,
       btnWidth: 0,
@@ -140,7 +142,7 @@ const Swipeout = createReactClass({
     };
   },
 
-  UNSAFE_componentWillMount: function () {
+  componentDidMount: function () {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (event, gestureState) => true,
       onStartShouldSetPanResponderCapture: (event, gestureState) =>
@@ -155,14 +157,12 @@ const Swipeout = createReactClass({
       onShouldBlockNativeResponder: (event, gestureState) => false,
       onPanResponderTerminationRequest: () => false,
     });
-    this.swipeoutContent = createRef();
-    console.warn(this.swipeoutContent);
   },
 
-  UNSAFE_componentWillReceiveProps: function (nextProps) {
-    if (nextProps.close) this._close();
-    if (nextProps.openRight) this._openRight();
-    if (nextProps.openLeft) this._openLeft();
+  componentDidUpdate: function (prevProps) {
+    if (prevProps.close !== this.props.close && this.props.close) this._close();
+    if (prevProps.openRight !== this.props.openRight && this.props.openRight) this._openRight();
+    if (prevProps.openLeft !== this.props.openLeft && this.props.openLeft) this._openLeft();
   },
 
   _handlePanResponderGrant: function (e: Object, gestureState: Object) {

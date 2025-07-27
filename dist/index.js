@@ -142,6 +142,8 @@ var Swipeout = (0, _createReactClass2.default)({
   },
 
   getInitialState: function getInitialState() {
+    this.swipeoutContent = (0, _react.createRef)();
+
     return {
       autoClose: this.props.autoClose || false,
       btnWidth: 0,
@@ -157,7 +159,7 @@ var Swipeout = (0, _createReactClass2.default)({
     };
   },
 
-  UNSAFE_componentWillMount: function UNSAFE_componentWillMount() {
+  componentDidMount: function componentDidMount() {
     var _this = this;
 
     this._panResponder = _reactNative.PanResponder.create({
@@ -181,14 +183,12 @@ var Swipeout = (0, _createReactClass2.default)({
         return false;
       }
     });
-    this.swipeoutContent = (0, _react.createRef)();
-    console.warn(this.swipeoutContent);
   },
 
-  UNSAFE_componentWillReceiveProps: function UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.close) this._close();
-    if (nextProps.openRight) this._openRight();
-    if (nextProps.openLeft) this._openLeft();
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (prevProps.close !== this.props.close && this.props.close) this._close();
+    if (prevProps.openRight !== this.props.openRight && this.props.openRight) this._openRight();
+    if (prevProps.openLeft !== this.props.openLeft && this.props.openLeft) this._openLeft();
   },
 
   _handlePanResponderGrant: function _handlePanResponderGrant(e, gestureState) {
