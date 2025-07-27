@@ -431,7 +431,7 @@ var Swipeout = (0, _createReactClass2.default)({
       _react2.default.createElement(
         _reactNative.View,
         _extends({
-          ref: this.state.swipeoutContent,
+          ref: this.swipeoutContent,
           style: styleContent,
           onLayout: this._onLayout
         }, this._panResponder.panHandlers),

@@ -391,7 +391,7 @@ const Swipeout = createReactClass({
     return (
       <View style={styleSwipeout}>
         <View
-          ref={this.state.swipeoutContent}
+          ref={this.swipeoutContent}
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}
