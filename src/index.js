@@ -4,6 +4,7 @@ import styles from './styles';
 
 import React, {
   Component,
+  createRef,
 } from 'react';
 import PropTypes from 'prop-types';
 import createReactClass from 'create-react-class';
@@ -42,6 +43,7 @@ const SwipeoutBtn = createReactClass({
       text: 'Click me',
       type: '',
       width: 0,
+
     };
   },
 
@@ -111,6 +113,7 @@ const Swipeout = createReactClass({
     sensitivity: PropTypes.number,
     buttonWidth: PropTypes.number,
     disabled: PropTypes.bool,
+    viewRef: createRef(),
   },
 
   getDefaultProps: function () {
@@ -388,7 +391,7 @@ const Swipeout = createReactClass({
     return (
       <View style={styleSwipeout}>
         <View
-          ref={node => this.swipeoutContent = node}
+          ref={viewRef}
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}

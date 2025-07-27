@@ -32,7 +32,7 @@ var _createReactClass2 = _interopRequireDefault(_createReactClass);
 
 var _reactNative = require('react-native');
 
-const { ViewPropTypes } = require('deprecated-react-native-prop-types');
+var _deprecatedReactNativePropTypes = require('deprecated-react-native-prop-types');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62,6 +62,7 @@ var SwipeoutBtn = (0, _createReactClass2.default)({
       text: 'Click me',
       type: '',
       width: 0
+
     };
   },
 
@@ -125,10 +126,11 @@ var Swipeout = (0, _createReactClass2.default)({
     onClose: _propTypes2.default.func,
     right: _propTypes2.default.array,
     scroll: _propTypes2.default.func,
-    style: (ViewPropTypes || _reactNative.View.propTypes).style,
+    style: (_deprecatedReactNativePropTypes.ViewPropTypes || _reactNative.View.propTypes).style,
     sensitivity: _propTypes2.default.number,
     buttonWidth: _propTypes2.default.number,
-    disabled: _propTypes2.default.bool
+    disabled: _propTypes2.default.bool,
+    viewRef: (0, _react.createRef)()
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -197,7 +199,7 @@ var Swipeout = (0, _createReactClass2.default)({
     } else {
       this._callOnClose();
     }
-    this.refs.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var buttonWidth = _this2.props.buttonWidth || width / 5;
       _this2.setState({
         btnWidth: buttonWidth,
@@ -339,7 +341,7 @@ var Swipeout = (0, _createReactClass2.default)({
   _openRight: function _openRight() {
     var _this3 = this;
 
-    this.refs.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var btnWidth = _this3.props.buttonWidth || width / 5;
 
       _this3.setState({
@@ -361,7 +363,7 @@ var Swipeout = (0, _createReactClass2.default)({
   _openLeft: function _openLeft() {
     var _this4 = this;
 
-    this.refs.swipeoutContent.measure(function (ox, oy, width, height) {
+    this.swipeoutContent.measure(function (ox, oy, width, height) {
       var btnWidth = _this4.props.buttonWidth || width / 5;
 
       _this4.setState({
@@ -429,7 +431,7 @@ var Swipeout = (0, _createReactClass2.default)({
       _react2.default.createElement(
         _reactNative.View,
         _extends({
-          ref: 'swipeoutContent',
+          ref: viewRef,
           style: styleContent,
           onLayout: this._onLayout
         }, this._panResponder.panHandlers),
